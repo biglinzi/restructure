@@ -44,9 +44,15 @@
 </template>
 
 <script setup lang="ts">
+import Cookies from 'js-cookie'
 import { reactive, ref, computed } from 'vue'
 import { useSystemSettingsStore } from '@/stores'
 import type { FormInstance, FormRules } from 'element-plus'
+import { getDomain } from '@/utils/utils'
+import { login } from '@cp/http'
+const crypto = require('crypto')
+// 使用node 中内置的crypto
+const MD5 = crypto.createHash('md5')
 const rules = reactive<FormRules>({
   account: [
     {
@@ -80,7 +86,23 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log('submit!')
+      MD5.update(form.password)
+      login({
+        account: form.account + (accountSuffix || ''),
+        password: MD5.digest(),
+      })
+        .then((data) => {
+          let domain = getDomain()
+          Cookies.set('token', data.token || '', { domain!, expires: 1 })
+          // this.$emit('success')
+        })
+        .catch((err) => {
+          this.errorMessage =
+            (err && err.data && err.data.message) || '未知错误'
+        })
+        .finally(() => {
+          this.formLoading = false
+        })
     } else {
       console.log('error submit!', fields)
     }

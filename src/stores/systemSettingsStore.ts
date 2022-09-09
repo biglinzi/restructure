@@ -12,6 +12,7 @@ export const useSystemSettingsStore = defineStore('systemSettings', {
       logoPath: '//static.knowlegene.com/',
       systemName: process.env.VUE_APP_TITLE,
       systemCode: process.env.VUE_APP_CODE,
+      accountSuffix:''
     },
   }),
   getters: {
