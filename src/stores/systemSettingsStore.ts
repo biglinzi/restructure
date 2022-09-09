@@ -1,15 +1,25 @@
 import { defineStore } from 'pinia'
 
-export const usesystemSettingsStore = defineStore('systemSettings', {
+interface systemSettingsType {
+  logoPath: string
+  systemName: string | undefined
+  systemCode: string | undefined
+  accountSuffix?: string | undefined
+}
+export const useSystemSettingsStore = defineStore('systemSettings', {
   state: () => ({
-    systemSettings: '',
+    systemSettings: {
+      logoPath: '//static.knowlegene.com/',
+      systemName: process.env.VUE_APP_TITLE,
+      systemCode: process.env.VUE_APP_CODE,
+    },
   }),
   getters: {
     fullMessage: (state) => `The message is "${state.systemSettings}".`,
   },
   actions: {
     // 异步更新 message
-    async updateMessage(newMessage: string): Promise<string> {
+    async updateMessage(newMessage: systemSettingsType): Promise<string> {
       return new Promise((resolve) => {
         setTimeout(() => {
           // 这里的 this 是当前的 Store 实例
@@ -19,7 +29,7 @@ export const usesystemSettingsStore = defineStore('systemSettings', {
       })
     },
     // 同步更新 message
-    updateMessageSync(newMessage: string): string {
+    updateMessageSync(newMessage: systemSettingsType): string {
       // 这里的 this 是当前的 Store 实例
       this.systemSettings = newMessage
       return 'Sync done.'

@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { usesystemSettingsStore } from '@/stores'
+import { useSystemSettingsStore } from '@/stores/index'
 import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
@@ -35,7 +35,7 @@ export default defineComponent({
         // return this.$router.push(URL);
       }
     }
-    const store = usesystemSettingsStore()
+    const store = useSystemSettingsStore()
     const systemSettings = computed(() => {
       return store.systemSettings
     })

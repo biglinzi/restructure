@@ -24,7 +24,7 @@
         placeholder="请输入您的密码"
         tabindex="101"
         @blur="stateData.errorMessage = ''"
-        @keyup.enter.native="handleSubmit"
+        @keyup.enter="handleSubmit"
       ></el-input>
     </el-form-item>
     <el-form-item class="form-error"
@@ -34,7 +34,7 @@
       <el-button
         type="primary"
         class="confirm-btn"
-        :loading="formLoading"
+        :loading="stateData.formLoading"
         @click="handleSubmit"
         tabindex="102"
         >立即登录
@@ -44,7 +44,8 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
+import { useSystemSettingsStore } from '@/stores'
 import type { FormInstance, FormRules } from 'element-plus'
 const rules = reactive<FormRules>({
   account: [
@@ -71,6 +72,10 @@ let stateData = reactive({
   errorMessage: '',
   formLoading: false,
 })
+let store = useSystemSettingsStore()
+let accountSuffix = computed(() => {
+  return store.systemSettings.accountSuffix
+})
 const handleSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
@@ -85,6 +90,7 @@ return {
   form,
   rules,
   stateData,
+  accountSuffix,
 }
 </script>
 

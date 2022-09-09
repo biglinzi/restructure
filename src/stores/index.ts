@@ -1,2 +1,2 @@
 export * from './message'
-export * from './sysSettings'
+export * from './systemSettingsStore'
