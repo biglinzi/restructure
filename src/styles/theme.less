@@ -1,0 +1,233 @@
+/*  待删除--start  */
+@base-color: #006fd1;
+@btn-color: #eeb900;
+
+@header-height: 60px;
+@logo-height: 34px;
+
+body{
+  background-color: @app-color-background;
+}
+
+@app-min-width: 1200px; // 容器最小宽度，包含顶栏/底栏/边栏
+@app-max-width: 1440px; // 内容区最大宽度，不含顶栏/底栏/边栏
+@app-padding-sides: 30px; // 内容区左右内边距 
+
+@color-black: #2C2C2C;
+@color-blue: #2680CA;
+@color-green: #86C54C;
+@color-orange: #EC6302;
+
+@bgColor-blue: rgba(233, 242, 249, 1);
+
+.orange-btn, .blue-btn, .light-blue-btn, .light-orange-btn {
+  padding: 0 20px;
+  height: 30px;
+  line-height: 28px;
+  border: 1px solid @color-orange;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fff;
+  background-color: @color-orange;
+}
+
+.blue-btn {
+  border-color: @color-blue;
+  background-color: @color-blue;
+}
+
+.light-blue-btn {
+  color: @color-blue;
+  background-color: rgba(233, 242, 249, 1);
+  border-color: rgba(233, 242, 249, 1);
+}
+
+.light-orange-btn {
+  color: @color-orange;
+  background-color: rgba(236, 99, 2, 0.1);
+  border-color: @color-orange;
+}
+
+.refresh-btn {
+  padding: 0;
+  color: @color-blue;
+  &::before {
+    font-size: 16px;
+  }
+  & > span {
+    margin-left: 5px;
+  }
+}
+
+.h2 {
+  color: @color-black;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+}
+.h3 {
+  color: @color-blue;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.h4 {
+  color: @color-black;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.underline-input {
+  width: 40px;
+  .el-input__inner {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 29px;
+  }
+}
+
+.table-input {
+  display: block;
+  .el-input__inner, .el-textarea__inner {
+    display: block;
+    font-size: 14px;
+    color: @color-black;
+    border-color: transparent;
+    border-radius: 0;
+    padding: 0 10px;
+    height: 42px;
+    line-height: 41px;
+    &:hover {
+      background-color: rgba(233, 242, 249, 1);
+    }
+    &:focus {
+      border-color: @color-blue;
+    }
+  }
+  .el-textarea__inner {
+    line-height: 24px;
+    height: 24px;
+    padding: 8px 10px 9px;
+  }
+  .el-input__icon {
+    line-height: 43px;
+  }
+}
+
+.el-radio__input.is-checked + .el-radio__label {
+  color: @color-blue;
+}
+.el-radio__input.is-checked .el-radio__inner {
+  color: @color-blue;
+  background-color: @color-blue;
+}
+
+/*  待删除--end  */
+
+
+/*---以下为规范化主题样式定义---*/
+@app-color-background: #ECF1F8;
+@app-min-width: 1200px; // 容器最小宽度，包含顶栏/底栏/边栏
+@app-max-width: 1440px; // 内容区最大宽度，不含顶栏/底栏/边栏
+@app-padding-sides: 30px; // 内容区左右内边距 
+// 尺寸
+@height-header: 60px;
+@height-footer: 45px;
+// 内容区各个模块的距离
+@space-content: 16px;
+// 颜色
+@color-primary: #3A6DE6;
+@color-success: #8ECD49;
+@color-warning: #EBB039;
+@color-danger: #E05454;
+@color-info: #909399;
+@color-disabled: #ccc;
+// 背景色
+@color-primary-background: #E3EEFF;
+@color-success-background: #DEF3DF;
+@color-warning-background: #FBF1DC;
+@color-danger-background: #FFE8E8;
+// 导航文字颜色
+@color-text-nav: #2B55B9;
+// 用于板块标题
+@color-text-module: #344360;
+// 用于标题文字
+@color-text-primary: #333;
+// 用于普通内容文字
+@color-text-regular: #666;
+// 用于辅助内容文字
+@color-text-secondary: #999;
+
+// 页面容器
+.page-content{
+  margin: 0 auto;
+  padding: 0 @app-padding-sides;
+  max-width: @app-max-width;
+}
+.page-content-reset{
+  margin: 0 auto !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+  background-color: #fff !important;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0) !important;
+  background-color: #fff !important;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0) !important;
+  background-color: #ddd !important;
+  border-radius: 3px !important;
+  &:hover,
+  &:active {
+    background-color: #c5c5c5 !important;
+  }
+}
+
+.el-scrollbar__thumb {
+  background-color: #ddd !important;
+  &:hover,
+  &:active {
+    background-color: #c5c5c5 !important;
+  }
+}
+
+// 变量导出
+:export {
+  colorPrimary: @color-primary;
+  colorSuccess: @color-success;
+  colorWarning: @color-warning;
+  colorDanger: @color-danger;
+}
+
+
+.cascaderWL .el-cascader-panel .el-cascader-node .el-radio{
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+.cascaderWL .el-cascader-node__label {
+  width: 157px;
+}
+
+.cascaderWL .el-cascader-panel .el-radio__input {
+  visibility: hidden;
+}
+
+.cascaderWL .el-cascader-panel .el-cascader-node__postfix {
+  top: 10px;
+}

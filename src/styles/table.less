@@ -1,0 +1,90 @@
+@import url("~@/styles/theme.less");
+table.focus-table,
+table.reg-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+.el-tabs__content {
+    // margin-top: 40px !important;
+}
+.el-table thead {
+    th {
+        background: #F8F8F8;
+        text-align: center;
+        font-size: 14px;
+        color: @color-text-primary;
+        font-weight: normal;
+    }
+}
+table.focus-table {
+    th {
+        padding: 15px 18px;
+        border: 1px solid #EEEEEE;
+        font-size: 18px;
+        font-weight: normal;
+        background: #F8F8F8;
+    }
+    td {
+        padding: 28px 24px;
+        border: 1px solid #e1f0ff;
+        text-align: center;
+        color: @color-text-regular;
+        &>.icon {
+            position: relative;
+            &>span {
+                position: absolute;
+                text-align: left;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                user-select: none;
+            }
+            .text-name {
+                width: 185px;
+                height: 4em;
+                line-height: 1.8em;
+                left: 108px;
+                top: 34px;
+            }
+            .target {
+                width: 215px;
+                left: 75px;
+                top: 32px;
+                white-space: nowrap;
+                &+span {
+                    width: 215px;
+                    left: 90px;
+                    top: 94px;
+                    white-space: nowrap;
+                }
+            }
+            .group {
+                width: 220px;
+                left: 84px;
+                top: 34px;
+                white-space: nowrap;
+            }
+        }
+        &>button {
+            margin: 20px auto 0;
+            width: 124px;
+        }
+    }
+}
+table.reg-table {
+    th,
+    td {
+        height: 48px;
+        padding: 10px 18px;
+        border: 1px solid #EEEEEE;
+        line-height: 1.6em;
+        color: @color-text-regular;
+    }
+    th {
+        text-align: left;
+        background: #F8F8F8;
+        font-size: 14px;
+        font-weight: normal;
+        color: @color-text-primary;
+    }
+}
