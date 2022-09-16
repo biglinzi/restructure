@@ -4,18 +4,22 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios'
-
-let Cookies = require('js-cookie')
-let { getDomain } = require('@/utils/utils')
+import type { IResponse } from './type'
+// let Cookies = require('js-cookie')
+import Cookies from 'js-cookie'
+// let { getDomain } = require('@/utils/utils')
+import { getDomain } from '@/utils/utils'
 // 自定义码值等于0时认为接口响应正常
 let PASS_CODE = 0
 // 实例化，用于隔离配置
-let http: AxiosInstance = axios.create()
+const axiosInstance: AxiosInstance = axios.create()
+// let http: AxiosInstance = axios.create()
 // 判断浏览器是否支持History API，即单页应用须使用history路由模式
 let supportsHistoryMode =
   window.history && typeof window.history.pushState === 'function'
 
-http.interceptors.request.use(
+// 请求拦截
+axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     let token = Cookies.get('token')
     // 配置token
@@ -40,7 +44,7 @@ http.interceptors.request.use(
  * 判断自定义状态码
  * HTTP状态码为401时(token错误/过期)强制跳转登录页
  */
-http.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (res: AxiosResponse) => {
     let { data, request } = res
     // 文件流
@@ -68,8 +72,8 @@ http.interceptors.response.use(
           window.top!.location.pathname === '/'
             ? ''
             : encodeURIComponent(
-                window.top!.location.pathname + window.top!.location.search
-              )
+              window.top!.location.pathname + window.top!.location.search
+            )
         fromURL && (fromURL = '?from=' + fromURL)
         window.top!.location.assign('/login' + fromURL)
       }
@@ -77,5 +81,28 @@ http.interceptors.response.use(
     return Promise.reject(err.response)
   }
 )
+const http = <T = any>(config: AxiosRequestConfig): Promise<T> => {
+  const conf = config
+  return new Promise((resolve) => {
+    axiosInstance
+      .request<any, AxiosResponse<IResponse>>(conf)
+      .then((res: AxiosResponse<IResponse>) => {
+        const {
+          data: { result },
+        } = res
+        resolve(result as T)
+      })
+  })
+}
+
+
+export function get<T = any>(config: AxiosRequestConfig): Promise<T> {
+  return http({ ...config, method: 'GET' })
+}
+
+export function post<T = any>(config: AxiosRequestConfig): Promise<T> {
+  return http({ ...config, method: 'POST' })
+}
 
 export default http
+export type { AxiosInstance, AxiosResponse }

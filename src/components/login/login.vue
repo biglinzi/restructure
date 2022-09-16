@@ -8,14 +8,14 @@
     <div class="login-content clearfix">
       <div class="fl showcase">
         <img
-          src="../../assets/img/login-decoration.png"
+          src="../assets/img/login-decoration.png"
           alt="登录"
           height="100%"
         />
       </div>
       <div class="fl form-container">
         <h2>登 录</h2>
-        <!-- <login-form @success="backToPreviousPage"></login-form> -->
+        <login-form @success="backTopreviousPage"></login-form>
         <p>若忘记密码，请联系管理员</p>
       </div>
     </div>
@@ -27,9 +27,9 @@ import { useSystemSettingsStore } from '@/stores/index'
 import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
-  setup () {
-    function backTopreviousPage(){
-      let URL = decodeURIComponent(location.search).replace(/^\?\w+=/g,'')
+  setup() {
+    function backTopreviousPage() {
+      let URL = decodeURIComponent(location.search).replace(/^\?\w+=/g, '')
       if (URL) {
         return URL
         // return this.$router.push(URL);
@@ -43,7 +43,7 @@ export default defineComponent({
       backTopreviousPage,
       systemSettings,
     }
-  }
+  },
 })
 </script>
 <style lang="less" scoped>

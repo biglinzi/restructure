@@ -10,6 +10,10 @@ const resolve = (dir: string): string => path.resolve(__dirname, dir)
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // process.env vue3 被移除需要在此处声明配置
+  define: {
+    'process.env': {},
+  },
   /**
    * 如果生产部署和开发路径不一样，可以在这里动态配置
    * @see https://cn.vitejs.dev/config/#base
@@ -19,16 +23,18 @@ export default defineConfig({
   /**
    * 本地开发服务，也可以配置接口代理
    * @see https://cn.vitejs.dev/config/#server-proxy
+   *
    */
   server: {
     port: 3000,
-    // proxy: {
-    //   '/devapi': {
-    //     target: 'http://192.168.10.198',
-    //     changeOrigin: true,
-    //     rewrite: (path) => path.replace(/^\/devapi/, ''),
-    //   },
-    // },
+    proxy: {
+      '/api': {
+        target: 'http://192.168.200.11:30053',
+        changeOrigin: true,
+        ws: true,
+        // rewrite: (path) => path.replace(/^\/devapi/, ''),//是否截取公共拦截请求头
+      },
+    },
   },
 
   // build: {
