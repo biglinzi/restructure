@@ -1,23 +1,23 @@
 <template>
   <div class="login">
     <h1 class="logo">
-      <slot name="logo">
-        <img :src="systemSettings.logoPath + 'logo_colorized.png'" alt="logo" />
-      </slot>
+      <a href="http://knowlegene.com/" target="_blank" title="知因智慧">
+        <img src="~@/assets/toker/know-logo.svg" alt="知因智慧" />
+      </a>
     </h1>
     <div class="login-content clearfix">
-      <div class="fl showcase">
-        <img
-          src="../assets/img/login-decoration.png"
-          alt="登录"
-          height="100%"
-        />
-      </div>
-      <div class="fl form-container">
-        <h2>登 录</h2>
-        <login-form @success="backTopreviousPage"></login-form>
-        <p>若忘记密码，请联系管理员</p>
-      </div>
+      <el-tabs class="login-style" :stretch="true">
+        <el-tab-pane label="账号登录">
+          <div class="fl form-container">
+            <login-form @success="backTopreviousPage"></login-form>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="验证码登录">
+          <div class="fl form-container">
+            <login-code @success="backTopreviousPage"></login-code>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
     </div>
   </div>
 </template>
