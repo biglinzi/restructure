@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import App from '@/App.vue'
 import router from '@/router'
 import ElementPuls from 'element-plus'
-
+import 'element-plus/dist/index.css'
 import directives from "./directive";
 import permission from "@/directives/permission";
 // 全局样式

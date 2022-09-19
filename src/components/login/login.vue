@@ -48,7 +48,11 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .login {
-  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(~@/assets/toker/login-bg.jpg);
+  background-size: cover;
+  background-position: center;
   & > .logo {
     padding: 20px 30px;
     img {
@@ -57,26 +61,17 @@ export default defineComponent({
   }
   .login-content {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 860px;
-    height: 440px;
-    margin-top: -230px;
-    margin-left: -430px;
-    border-radius: 8px;
+    top: 23%;
+    right: 10%;
+    width: 380px;
+    height: 398px;
+    border-radius: 16px;
     background-color: #fff;
-    box-shadow: 0px 0px 20px 4px rgba(202, 215, 225, 1);
-    & > .showcase {
+    box-shadow: 0px 2px 8px rgba(92, 108, 163, 0.23), 0px 4px 31px rgba(103, 121, 185, 0.4);
+    .form-container {
+      width: 380px;
       height: 100%;
-      width: 350px;
-      overflow: hidden;
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-    }
-    & > .form-container {
-      width: 500px;
-      height: 100%;
-      padding: 50px 100px 0;
+      padding: 30px 20px 10px 30px;
       overflow: hidden;
       & > h2 {
         margin: 10px 0 40px;
@@ -84,11 +79,23 @@ export default defineComponent({
         text-align: center;
         color: #515361;
       }
-      & > p {
-        margin-top: -12px;
-        font-size: 12px;
-        text-align: right;
-        color: #909399;
+    }
+    .login-style {
+      .el-tabs__item {
+        height: 70px !important;
+        line-height: 70px !important;
+        font-weight: 400 !important;
+        font-size: 18px !important;
+      }
+      .el-tabs__item.is-active {
+        font-style: normal !important;
+        font-weight: 700 !important;
+        font-size: 18px !important;
+      }
+      .el-tabs__active-bar {
+        width: 106px !important;
+        height: 4px;
+        left: 33px;
       }
     }
   }
