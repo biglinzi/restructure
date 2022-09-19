@@ -1,202 +1,207 @@
-import Header from "@/components/nav/HeaderNav.vue";
+import Header from '@/components/nav/HeaderNav.vue'
 
 export default [
   {
-    path: "/knowtoker",
-    name: "knowtoker",
-    redirect: "knowtoker/enterprise",
+    path: '/knowtoker',
+    name: 'knowtoker',
+    redirect: 'knowtoker/enterprise',
     components: {
       header: Header,
-      default: () => import("@/views/know-toker/index.vue")
+      default: () => import('@/views/know-toker/index.vue'),
     },
     meta: {
-      title: "知因拓客",
-      context: ["navView"]
+      title: '知因拓客',
+      context: ['navView'],
     },
     children: [
       {
-        path: "overview",
-        name: "toker-overview",
+        path: 'overview',
+        name: 'toker-overview',
         meta: {
-          title: "工作台"
+          title: '工作台',
         },
-        component: () => import("@/views/know-toker/overview/index.vue")
+        component: () => import('@/views/know-toker/overview/index.vue'),
       },
       {
-        path: "enterprise",
-        name: "toker-enterprise",
+        path: 'enterprise',
+        name: 'toker-enterprise',
         meta: {
-          title: "企业拓客"
+          title: '企业拓客',
         },
-        component: () => import("@/views/know-toker/enterprise-toker/index.vue")
+        component: () =>
+          import('@/views/know-toker/enterprise-toker/index.vue'),
       },
       {
-        path: "enterprise/search",
-        name: "toker-searchDetail",
+        path: 'enterprise/search',
+        name: 'toker-searchDetail',
         meta: {
-          title: "企业拓客"
+          title: '企业拓客',
         },
-        component: () => import("@/views/know-toker/enterprise-toker/details.vue")
+        component: () =>
+          import('@/views/know-toker/enterprise-toker/details.vue'),
       },
       {
-        path: "expand/detail",
-        name: "toker-detail",
+        path: 'expand/detail',
+        name: 'toker-detail',
         meta: {
-          title: "企业拓客详情"
+          title: '企业拓客详情',
         },
-        component:()=> import ('@/views/marketing/expand/expandDefault/index.vue')
+        component: () =>
+          import('@/views/marketing/expand/expandDefault/index.vue'),
         // component: () => import("@/views/marketing/expand/expandDetail.vue")
       },
       {
-        path: "expand/customer",
-        name: "toker-customerDetail",
+        path: 'expand/customer',
+        name: 'toker-customerDetail',
         meta: {
-          title: "企业拓客客群详情"
+          title: '企业拓客客群详情',
         },
-        component: () => import("@/views/know-toker/enterprise-toker/CustomerDetail.vue")
+        component: () =>
+          import('@/views/know-toker/enterprise-toker/CustomerDetail.vue'),
       },
       {
-        path: "business",
-        name: "toker-business",
+        path: 'business',
+        name: 'toker-business',
         meta: {
-          title: "商机拓客"
+          title: '商机拓客',
         },
-        component: () => import("@/views/know-toker/business-toker/index.vue")
+        component: () => import('@/views/know-toker/business-toker/index.vue'),
       },
       {
-        path: "advanced",
-        name: "advanced-search",
+        path: 'advanced',
+        name: 'advanced-search',
         meta: {
-          title: "高级筛选"
+          title: '高级筛选',
         },
-        component: () => import("@/views/know-toker/advanced-search/index.vue")
+        component: () => import('@/views/know-toker/advanced-search/index.vue'),
       },
       {
-        path: "industry",
-        name: "toker-industry",
+        path: 'industry',
+        name: 'toker-industry',
         meta: {
-          title: "产业获客"
+          title: '产业获客',
         },
-        component: () => import("@/views/know-toker/industry-toker/index.vue")
+        component: () => import('@/views/know-toker/industry-toker/index.vue'),
       },
       {
-        path: "industry/detail/:key",
-        name: "industry-detail",
+        path: 'industry/detail/:key',
+        name: 'industry-detail',
         meta: {
-          title: "产业详情"
+          title: '产业详情',
         },
-        component: () => import("@/views/know-toker/industry-detail/index.vue")
+        component: () => import('@/views/know-toker/industry-detail/index.vue'),
       },
       {
-        path: "map",
-        name: "marketing-map",
+        path: 'map',
+        name: 'marketing-map',
         meta: {
-          title: "地图获客"
+          title: '地图获客',
         },
-        component: () => import("@/views/marketing/map/index.vue")
+        component: () => import('@/views/marketing/map/index.vue'),
       },
       {
-        path: "park",
-        name: "marketing-park",
+        path: 'park',
+        name: 'marketing-park',
         meta: {
-          title: "园区获客"
+          title: '园区获客',
         },
-        component: () => import("@/views/marketing/park/index.vue")
+        component: () => import('@/views/marketing/park/index.vue'),
       },
       {
-        path: "park/parkList",
-        name: "marketing-park-list",
+        path: 'park/parkList',
+        name: 'marketing-park-list',
         meta: {
-          title: "园区列表"
+          title: '园区列表',
         },
-        component: () => import("@/views/marketing/park/parkList.vue")
+        component: () => import('@/views/marketing/park/parkList.vue'),
       },
       {
-        path: "park/searchList",
-        name: "marketing-search-list",
+        path: 'park/searchList',
+        name: 'marketing-search-list',
         meta: {
-          titile: "园区搜索列表"
+          titile: '园区搜索列表',
         },
-        component: () => import("@/views/marketing/park/parkSearchList.vue")
+        component: () => import('@/views/marketing/park/parkSearchList.vue'),
       },
       {
-        path: "park/companyList",
-        name: "marketing-company-list",
+        path: 'park/companyList',
+        name: 'marketing-company-list',
         meta: {
-          titile: "园区企业列表"
+          titile: '园区企业列表',
         },
-        component: () => import("@/views/marketing/park/parkCompanyList.vue")
+        component: () => import('@/views/marketing/park/parkCompanyList.vue'),
       },
       {
-        path: "customer",
-        name: "customers-new",
+        path: 'customer',
+        name: 'customers-new',
         meta: {
-          title: "关联拓客"
+          title: '关联拓客',
         },
-        component: () => import("@/views/know-toker/customers-new/index.vue")
+        component: () => import('@/views/know-toker/customers-new/index.vue'),
       },
       {
-        path: "marketing/admin",
-        name: "marketing-admin",
+        path: 'marketing/admin',
+        name: 'marketing-admin',
         meta: {
-          title: "营销方案"
+          title: '营销方案',
         },
-        component: () => import("@/views/know-toker/marketing-admin/index.vue")
+        component: () => import('@/views/know-toker/marketing-admin/index.vue'),
       },
       {
-        path: "plan/:planid",
-        name: "plan-detail",
+        path: 'plan/:planid',
+        name: 'plan-detail',
         meta: {
-          title: "方案详情"
+          title: '方案详情',
         },
-        component: () => import("@/views/know-toker/plan-detail/index.vue")
+        component: () => import('@/views/know-toker/plan-detail/index.vue'),
       },
       {
-        path: "business/follow",
-        name: "business-follow",
+        path: 'business/follow',
+        name: 'business-follow',
         meta: {
-          title: "商机跟进"
+          title: '商机跟进',
         },
-        component: () => import("@/views/know-toker/business-follow/index.vue")
+        component: () => import('@/views/know-toker/business-follow/index.vue'),
       },
       {
-        path: "follow",
-        name: "follow-enterprise",
-        component: () => import("@/views/know-toker/follow-enterprise/index.vue"),
+        path: 'follow',
+        name: 'follow-enterprise',
+        component: () =>
+          import('@/views/know-toker/follow-enterprise/index.vue'),
         meta: {
-          title: "关注企业"
-        }
+          title: '关注企业',
+        },
       },
       {
-        path: "recycle",
-        name: "recycle-bin",
-        component: () => import("@/views/know-toker/RecycleBin.vue"),
+        path: 'recycle',
+        name: 'recycle-bin',
+        component: () => import('@/views/know-toker/RecycleBin.vue'),
         meta: {
-          title: "回收站"
-        }
+          title: '回收站',
+        },
       },
       {
-        path: "newsContent",
-        name: "news-content",
+        path: 'newsContent',
+        name: 'news-content',
         components: {
           header: Header,
-          default: () => import("@/views/marketing/track/NewsContent.vue")
+          default: () => import('@/views/marketing/track/NewsContent.vue'),
         },
         meta: {
-          title: "新闻正文"
-        }
+          title: '新闻正文',
+        },
       },
       {
-        path: "/knowtoker/grouportrait",
-        name: "group-portrait",
+        path: '/knowtoker/grouportrait',
+        name: 'group-portrait',
         components: {
           header: Header,
-          default: () => import("@/views/know-toker/group-portrait/index.vue")
+          default: () => import('@/views/know-toker/group-portrait/index.vue'),
         },
         meta: {
-          title: "集团画像"
-        }
-      }
+          title: '集团画像',
+        },
+      },
       // {
       //   path: "filter",
       //   name: "test-filter",
@@ -205,6 +210,6 @@ export default [
       //     title: "测试筛选栏"
       //   }
       // },
-    ]
+    ],
   },
-];
+]

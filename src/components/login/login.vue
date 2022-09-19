@@ -2,7 +2,7 @@
   <div class="login">
     <h1 class="logo">
       <a href="http://knowlegene.com/" target="_blank" title="知因智慧">
-        <img src="~@/assets/toker/know-logo.svg" alt="知因智慧" />
+        <img src="@/assets/toker/know-logo.svg" alt="知因智慧" />
       </a>
     </h1>
     <div class="login-content clearfix">
@@ -25,15 +25,17 @@
 <script lang="ts">
 import { useSystemSettingsStore } from '@/stores/index'
 import { defineComponent, computed } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
+    const router = useRouter()
     function backTopreviousPage() {
       let URL = decodeURIComponent(location.search).replace(/^\?\w+=/g, '')
       if (URL) {
-        return URL
-        // return this.$router.push(URL);
+        return router.push(URL);
       }
+      router.push('/')
     }
     const store = useSystemSettingsStore()
     const systemSettings = computed(() => {

@@ -16,5 +16,3 @@ createApp(App)
   .use(directives)
   .directive('permission',permission)
   .mount('#app')
-
-

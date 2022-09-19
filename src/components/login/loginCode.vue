@@ -1,38 +1,35 @@
 <template>
   <div>
-    <el-form ref="form" class="login-code" :model="form" :rules="rules">
+    <el-form ref="ruleFormRef" class="login-code" :model="form" :rules="rules">
       <el-form-item prop="phone">
         <el-input
-          ref="phone"
           v-model.trim="form.phone"
           placeholder="请输入手机号"
           tabindex="100"
-          name="username"
+          name="phone"
           @blur="data.errorMessage = ''"
         >
-          <i slot="prefix" class="el-icon-code">
-            <img src="~@/assets/toker/phone.svg" alt="logo" />
-          </i>
         </el-input>
       </el-form-item>
       <el-form-item prop="code">
         <el-input
-          v-model.trim="form.code"
+          v-model="form.code"
           placeholder="请输入验证码"
           tabindex="101"
           class="login-code"
           @blur="data.errorMessage = ''"
-          @keyup.enter="handleSubmit"
+          @keyup="handleSubmit(ruleFormRef)"
+        />
+        <el-button
+          class="get-code"
+          @click="handleSend"
+          :disabled="data.isSend"
+          >{{ data.sendCount }}</el-button
         >
-          <i slot="prefix" class="el-icon-code">
-            <img src="~@/assets/toker/verification-code.svg" alt="logo" />
-          </i>
-        </el-input>
-        <el-button class="get-code" @click="handleSend" :disabled="data.isSend">{{
-          data.sendCount
-        }}</el-button>
       </el-form-item>
-      <el-form-item class="form-error">{{ data.errorMessage }}&nbsp;</el-form-item>
+      <el-form-item class="form-error"
+        >{{ data.errorMessage }}&nbsp;</el-form-item
+      >
       <div class="seat"></div>
       <el-form-item>
         <el-button
@@ -52,21 +49,25 @@
 import type { FormInstance, FormRules } from 'element-plus'
 import { defineComponent, reactive, ref } from 'vue'
 import Cookies from 'js-cookie'
+import {
+  getSmsCode, // 获取验证码
+  loginBySms, // 验证码登录
+} from '@/api/login'
 import { getDomain } from '@/utils/utils'
 
 export default defineComponent({
   setup(props, context) {
     let data = reactive({
-        sendCount: '获取验证码',
-        verification: false,
-        isSend: false,
-        errorMessage: '',
-        formLoading: false,
-      }),
-      form = reactive({
-        phone: '',
-        code: '',
-      })
+      sendCount: '获取验证码',
+      verification: false,
+      isSend: false,
+      errorMessage: '',
+      formLoading: false,
+    })
+    let form = reactive({
+      phone: '',
+      code: '',
+    })
 
     const rules = reactive<FormRules>({
       phone: [
@@ -77,14 +78,15 @@ export default defineComponent({
         },
       ],
     })
+    // form ref 字段 必须与此处变量key 一致
     const ruleFormRef = ref<FormInstance>()
     const handleSubmit = async (formEl: FormInstance | undefined) => {
       if (!formEl) return
       await formEl.validate((valid, fields) => {
         if (valid) {
-          login({
-            phone: this.form.phone,
-            code: this.form.code,
+          loginBySms({
+            phone: form.phone,
+            code: form.code,
           })
             .then((data) => {
               let domain = getDomain()
@@ -103,13 +105,43 @@ export default defineComponent({
         }
       })
     }
-
+    // 发送短信验证码
+    const handleSend = async (formEl: FormInstance | undefined) => {
+      if (!formEl) return false
+      await formEl.validate((valid) => {
+        if (valid) {
+          getSmsCode({
+            phone: form.phone,
+            application: '知因拓客',
+          })
+            .then(() => {
+              let sendNum = 60
+              const auth_time = setInterval(() => {
+                data.isSend = true
+                data.sendCount = '重新获取' + sendNum-- + 's'
+                if (sendNum <= 0) {
+                  data.verification = false
+                  data.sendCount = '获取验证码'
+                  data.isSend = false
+                  clearInterval(auth_time)
+                }
+              }, 1000)
+            })
+            .catch((err) => {
+              data.errorMessage =
+                (err && err.data && err.data.message) || '未知错误'
+            })
+            .finally(() => {})
+        }
+      })
+    }
     return {
       rules,
       data,
       form,
       ruleFormRef,
       handleSubmit,
+      handleSend,
     }
   },
 })

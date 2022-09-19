@@ -72,8 +72,8 @@ axiosInstance.interceptors.response.use(
           window.top!.location.pathname === '/'
             ? ''
             : encodeURIComponent(
-              window.top!.location.pathname + window.top!.location.search
-            )
+                window.top!.location.pathname + window.top!.location.search
+              )
         fromURL && (fromURL = '?from=' + fromURL)
         window.top!.location.assign('/login' + fromURL)
       }
@@ -81,26 +81,22 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(err.response)
   }
 )
-const http = <T = any>(config: AxiosRequestConfig): Promise<T> => {
+const http = (config: AxiosRequestConfig) => {
   const conf = config
   return new Promise((resolve) => {
     axiosInstance
       .request<any, AxiosResponse<IResponse>>(conf)
       .then((res: AxiosResponse<IResponse>) => {
-        const {
-          data: { result },
-        } = res
-        resolve(result as T)
+        resolve(res)
       })
   })
 }
 
-
-export function get<T = any>(config: AxiosRequestConfig): Promise<T> {
+export function get(config: AxiosRequestConfig) {
   return http({ ...config, method: 'GET' })
 }
 
-export function post<T = any>(config: AxiosRequestConfig): Promise<T> {
+export function post(config: AxiosRequestConfig) {
   return http({ ...config, method: 'POST' })
 }
 

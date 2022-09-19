@@ -11,7 +11,6 @@
         class="account-input"
         @blur="stateData.errorMessage = ''"
       >
-        <template #suffix>{{ accountSuffix }}</template>
       </el-input>
     </el-form-item>
     <el-form-item prop="password">
@@ -24,7 +23,7 @@
         placeholder="请输入密码"
         tabindex="101"
         @blur="stateData.errorMessage = ''"
-        @keyup.enter="handleSubmit"
+        @keyup.enter="handleSubmit(ruleFormRef)"
       ></el-input>
     </el-form-item>
     <el-form-item class="form-error">{{ stateData.errorMessage }}&nbsp;</el-form-item>
@@ -48,7 +47,7 @@ import { reactive, ref, computed, defineComponent } from 'vue'
 import { useSystemSettingsStore } from '@/stores'
 import type { FormInstance, FormRules } from 'element-plus'
 import { getDomain } from '@/utils/utils'
-import { login, LoginData } from '@/api/login'
+import { login } from '@/api/login'
 import md5 from 'js-md5'
 export default defineComponent({
   setup(props, context) {
@@ -89,12 +88,13 @@ export default defineComponent({
         if (valid) {
           md5.update(form.password)
           login({
-            account: form.account + (accountSuffix || ''),
+            account: form.account, //+ (accountSuffix || ''),
             password: md5(form.password).toString(),
           })
             .then((data) => {
               let domain = getDomain()
               Cookies.set('token', data.token || '', { domain, expires: 1 })
+              console.log(1)
               context.emit('success')
             })
             .catch((err) => {
