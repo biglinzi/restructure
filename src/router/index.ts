@@ -18,7 +18,7 @@ if (!isChrome) {
 let childrenProduct: number = 5
 
 router.beforeEach((to, from, next) => {
-  if (childrenProduct) {
+  if (childrenProduct--<=0) {
     // clearPending()
   }
   to.path === '/login' && sessionStorage.clear()

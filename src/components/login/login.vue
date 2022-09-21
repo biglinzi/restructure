@@ -33,7 +33,7 @@ export default defineComponent({
     function backTopreviousPage() {
       let URL = decodeURIComponent(location.search).replace(/^\?\w+=/g, '')
       if (URL) {
-        return router.push(URL);
+        return router.push(URL)
       }
       router.push('/')
     }

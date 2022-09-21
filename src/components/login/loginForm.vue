@@ -94,7 +94,6 @@ export default defineComponent({
             .then((data) => {
               let domain = getDomain()
               Cookies.set('token', data.token || '', { domain, expires: 1 })
-              console.log(1)
               context.emit('success')
             })
             .catch((err) => {
