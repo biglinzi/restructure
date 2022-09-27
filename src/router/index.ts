@@ -28,6 +28,8 @@ router.beforeEach((to, from, next) => {
   }
   to.path === '/login' && sessionStorage.clear()
   if (to.path === '/login' || to.path === '/auth') return next()
+  // 权限验证
+
 })
 router.afterEach((to) => {
   const { title } = to.meta
