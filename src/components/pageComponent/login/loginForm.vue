@@ -42,13 +42,15 @@
 </template>
 
 <script lang="ts">
-import Cookies from 'js-cookie'
+
 import { reactive, ref, computed, defineComponent } from 'vue'
 import { useSystemSettingsStore } from '@/stores'
-import type { FormInstance, FormRules } from 'element-plus'
-import { getDomain } from '@/utils/utils'
-import { login } from '@/api/login'
 import md5 from 'js-md5'
+import { getDomain } from '@/utils/utils'
+import Cookies from 'js-cookie'
+import type { FormInstance, FormRules } from 'element-plus'
+import { login } from '@/api/login'
+
 export default defineComponent({
   setup(props, context) {
     // const crypto = require('crypto')

@@ -2,43 +2,20 @@
   <div>
     <el-form ref="ruleFormRef" class="login-code" :model="form" :rules="rules">
       <el-form-item prop="phone">
-        <el-input
-          v-model.trim="form.phone"
-          placeholder="请输入手机号"
-          tabindex="100"
-          name="phone"
-          @blur="data.errorMessage = ''"
-        >
+        <el-input v-model.trim="form.phone" placeholder="请输入手机号" tabindex="100" name="phone"
+          @blur="data.errorMessage = ''">
         </el-input>
       </el-form-item>
       <el-form-item prop="code">
-        <el-input
-          v-model="form.code"
-          placeholder="请输入验证码"
-          tabindex="101"
-          class="login-code"
-          @blur="data.errorMessage = ''"
-          @keyup="handleSubmit(ruleFormRef)"
-        />
-        <el-button
-          class="get-code"
-          @click="handleSend"
-          :disabled="data.isSend"
-          >{{ data.sendCount }}</el-button
-        >
+        <el-input v-model="form.code" placeholder="请输入验证码" tabindex="101" class="login-code"
+          @blur="data.errorMessage = ''" @keyup="handleSubmit(ruleFormRef)" />
+        <el-button class="get-code" @click="handleSend" :disabled="data.isSend">{{ data.sendCount }}</el-button>
       </el-form-item>
-      <el-form-item class="form-error"
-        >{{ data.errorMessage }}&nbsp;</el-form-item
-      >
+      <el-form-item class="form-error">{{ data.errorMessage }}&nbsp;</el-form-item>
       <div class="seat"></div>
       <el-form-item>
-        <el-button
-          type="primary"
-          class="confirm-btn"
-          :loading="data.formLoading"
-          @click="handleSubmit(ruleFormRef)"
-          tabindex="102"
-          >立即登录
+        <el-button type="primary" class="confirm-btn" :loading="data.formLoading" @click="handleSubmit(ruleFormRef)"
+          tabindex="102">立即登录
         </el-button>
       </el-form-item>
     </el-form>
@@ -107,6 +84,7 @@ export default defineComponent({
     }
     // 发送短信验证码
     const handleSend = async (formEl: FormInstance | undefined) => {
+
       if (!formEl) return false
       await formEl.validate((valid) => {
         if (valid) {
@@ -131,7 +109,7 @@ export default defineComponent({
               data.errorMessage =
                 (err && err.data && err.data.message) || '未知错误'
             })
-            .finally(() => {})
+            .finally(() => { })
         }
       })
     }
@@ -157,13 +135,13 @@ export default defineComponent({
 
   .el-form-item {
     .el-input {
-      & > .el-input__prefix {
+      &>.el-input__prefix {
         left: 5px;
         color: #888;
         font-size: 16px;
       }
 
-      & > input {
+      &>input {
         border-radius: 3px;
         border-width: 1px;
       }

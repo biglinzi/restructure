@@ -4,11 +4,16 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios'
-import type { IResponse } from './type'
-// let Cookies = require('js-cookie')
 import Cookies from 'js-cookie'
-// let { getDomain } = require('@/utils/utils')
 import { getDomain } from '@/utils/utils'
+console.log(import.meta.env.VITE_BASE_URL)
+
+
+interface MyResponseType {
+  code: number;
+  message: string;
+  data: any;
+}
 // 自定义码值等于0时认为接口响应正常
 let PASS_CODE = 0
 // 实例化，用于隔离配置
@@ -81,13 +86,16 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(err.response)
   }
 )
-const http = (config: AxiosRequestConfig) => {
+const http =(config: AxiosRequestConfig): Promise<MyResponseType> => {
   const conf = config
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     axiosInstance
-      .request<any, AxiosResponse<IResponse>>(conf)
-      .then((res: AxiosResponse<IResponse>) => {
+      .request<any, MyResponseType>(conf)
+      .then((res) => {
         resolve(res)
+      })
+      .catch((err: any) => {
+        reject(err)
       })
   })
 }

@@ -1,4 +1,4 @@
-import { post, get } from '@cp/http/instance'
+import { post, get } from '@/components/serverComponent/http/instance'
 
 export interface LoginData {
   account: string
@@ -6,7 +6,7 @@ export interface LoginData {
 }
 // 登陆
 const login = async (data: LoginData) => {
-  return post<any>({
+  return post({
     url: '/api/auth/doLogin',
     data,
   })
@@ -19,7 +19,7 @@ export interface loginOutType {
  * @param {Object} data
  */
 const logout = (data: loginOutType) => {
-  return get<any>({
+  return get({
     url: '/api/auth/doLogout',
     data,
   })

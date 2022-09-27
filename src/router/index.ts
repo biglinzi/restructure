@@ -1,6 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
 import { websiteTitle } from '@/config'
+import { Forbidden, Transit } from '@cp/pageComponent';
+import {defineStore} from 'pinia'
+
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
