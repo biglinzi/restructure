@@ -6,14 +6,11 @@ import axios, {
 } from 'axios'
 import Cookies from 'js-cookie'
 import { getDomain } from '@/utils/utils'
+import prefix from './prefix'
 console.log(import.meta.env.VITE_BASE_URL)
 
 
-interface MyResponseType {
-  code: number;
-  message: string;
-  data: any;
-}
+
 // 自定义码值等于0时认为接口响应正常
 let PASS_CODE = 0
 // 实例化，用于隔离配置
@@ -29,12 +26,13 @@ axiosInstance.interceptors.request.use(
     let token = Cookies.get('token')
     // 配置token
     if (!config.headers!.token && !!token) config.headers!.Token = token
+    config.url =  prefix+config.url
     // 配置restful参数
     if (/:\w+/g.test(config.url as string)) {
       Object.keys(config.params).forEach((key) => {
         let reg = RegExp(':' + key, 'i')
         if (reg.test(config.url as string)) {
-          config.url = config.url!.replace(reg, config.params[key])
+          config.url =config.url!.replace(reg, config.params[key])
           delete config.params[key]
         }
       })
@@ -49,7 +47,8 @@ axiosInstance.interceptors.request.use(
  * 判断自定义状态码
  * HTTP状态码为401时(token错误/过期)强制跳转登录页
  */
-axiosInstance.interceptors.response.use(
+// unknown 在此处起占位符的作用
+axiosInstance.interceptors.response.use<MyResponseType<unknown>>(
   (res: AxiosResponse) => {
     let { data, request } = res
     // 文件流
@@ -58,7 +57,7 @@ axiosInstance.interceptors.response.use(
     }
     // 数据正常
     if (data.code === PASS_CODE) {
-      return data.data
+      return data
     }
     // 数据异常
     return Promise.reject(res)
@@ -86,11 +85,11 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(err.response)
   }
 )
-const http =(config: AxiosRequestConfig): Promise<MyResponseType> => {
+const http =<T>(config: AxiosRequestConfig): Promise<MyResponseType<T>> => {
   const conf = config
   return new Promise((resolve, reject) => {
     axiosInstance
-      .request<any, MyResponseType>(conf)
+      .request<any, MyResponseType<T> >(conf)
       .then((res) => {
         resolve(res)
       })
@@ -100,12 +99,13 @@ const http =(config: AxiosRequestConfig): Promise<MyResponseType> => {
   })
 }
 
-export function get(config: AxiosRequestConfig) {
-  return http({ ...config, method: 'GET' })
+export function get<T>(url:string,data:object={}) {
+
+  return http<T>({ url,data, method: 'GET' })
 }
 
-export function post(config: AxiosRequestConfig) {
-  return http({ ...config, method: 'POST' })
+export function post<T>(url:string,data:object={}) {
+  return http<T>({ url,data, method: 'POST' })
 }
 
 export default http

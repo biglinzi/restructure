@@ -7,16 +7,21 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    FooterCopyright: typeof import('./src/components/FooterCopyright.vue')['default']
     Forbidden: typeof import('./src/components/pageComponent/Forbidden.vue')['default']
+    Header: typeof import('./src/components/nav/header.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Layout: typeof import('./src/components/layout/index.vue')['default']
     Login: typeof import('./src/components/pageComponent/login/login.vue')['default']
     LoginCode: typeof import('./src/components/pageComponent/login/loginCode.vue')['default']
     LoginForm: typeof import('./src/components/pageComponent/login/loginForm.vue')['default']
     Logout: typeof import('./src/components/pageComponent/logout/logout.vue')['default']
+    Nav: typeof import('./src/components/nav/index.vue')['default']
     NoFound: typeof import('./src/components/pageComponent/NoFound.vue')['default']
     NoneData: typeof import('./src/components/NoneData.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TipCard: typeof import('./src/components/viewComponent/tipCard.vue')['default']
     TransferStation: typeof import('./src/components/TransferStation.vue')['default']
     Transit: typeof import('./src/components/Transit.vue')['default']
   }

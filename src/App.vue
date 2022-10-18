@@ -1,5 +1,5 @@
 <template>
-  <router-view :key="key" />
+  <router-view></router-view>
 </template>
 
 <script setup lang="ts">
@@ -16,7 +16,6 @@ const key = computed(() =>
 @import '~@/styles/sprite.less';
 @import '~@/styles/theme.less';
 @import '~@/styles/el-theme/local.less';
-
 html,
 body {
   height: 100%;

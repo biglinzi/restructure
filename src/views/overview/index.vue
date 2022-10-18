@@ -1,8 +1,9 @@
 <template>
-  <router-view></router-view>
+<TopCard />
 </template>
 
 <script lang="ts" setup>
+import TopCard from './components/topCard/index.vue'
 
 </script>
 

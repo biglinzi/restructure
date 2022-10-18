@@ -72,6 +72,7 @@ export default defineConfig({
     alias: {
       // 兼容webpack的习惯
       '@': resolve('src'),
+      '@api': resolve('src/api'),
       '@img': resolve('src/assets/img'),
       '@less': resolve('src/assets/less'),
       '@libs': resolve('src/libs'),
@@ -79,6 +80,7 @@ export default defineConfig({
       '@views': resolve('src/views'),
       // 兼容webpack的静态资源
       '~@': resolve('src'),
+      '~@api': resolve('src/api'),
       '~@img': resolve('src/assets/img'),
       '~@less': resolve('src/assets/less'),
       '~@libs': resolve('src/libs'),
@@ -124,7 +126,6 @@ export default defineConfig({
 
   plugins: [
     vue(),
-
     /**
      * 自动导入组件，不用每次都 import
      * @see https://github.com/antfu/unplugin-vue-components#configuration

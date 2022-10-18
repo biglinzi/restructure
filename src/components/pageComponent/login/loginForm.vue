@@ -95,10 +95,12 @@ export default defineComponent({
           })
             .then((data) => {
               let domain = getDomain()
-              Cookies.set('token', data.token || '', { domain, expires: 1 })
+              console.log(data)
+              Cookies.set('token', data.data.token || '', { domain, expires: 1 })
               context.emit('success')
             })
             .catch((err) => {
+              console.log(err)
               stateData.errorMessage =
                 (err && err.data && err.data.message) || '未知错误'
             })

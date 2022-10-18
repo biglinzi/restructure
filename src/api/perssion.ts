@@ -57,17 +57,17 @@ interface user {
   thirdAccount: null
   mid: string | null
 }
-interface data {
+declare interface perssionDataType {
   menuList: menu[]
   org: org
   user: user
 }
 export function getSession() {
-  return get({
-    url: '/api/auth/getSession',
-    data: { params: { sysCode: 'octopus' }, transformResponse: formatter },
-  })
-  function formatter(data: data) {
+  return get<perssionDataType>(
+     '/auth/getSession',
+     { params: { sysCode: 'octopus' }, transformResponse: formatter },
+  )
+  function formatter(data:perssionDataType) {
     let { menuList = [], ...rest } = data
     return {
       ...rest,

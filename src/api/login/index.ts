@@ -4,12 +4,15 @@ export interface LoginData {
   account: string
   password: string
 }
+interface loginResType{
+  token:string
+}
 // 登陆
 const login = async (data: LoginData) => {
-  return post({
-    url: '/api/auth/doLogin',
+  return post<loginResType>(
+    '/auth/doLogin',
     data,
-  })
+  )
 }
 export interface loginOutType {
   id: string
@@ -19,10 +22,10 @@ export interface loginOutType {
  * @param {Object} data
  */
 const logout = (data: loginOutType) => {
-  return get({
-    url: '/api/auth/doLogout',
+  return get(
+    '/api/auth/doLogout',
     data,
-  })
+  )
 }
 
 /**
@@ -34,14 +37,14 @@ export interface smCodeDataType {
   application: '知因拓客'
 }
 const getSmsCode = (data: smCodeDataType) => {
-  return post({ url: '/api/auth/getSmsCode', data })
+  return post( '/api/auth/getSmsCode', data)
 }
 export interface loginBySmsType {
   phone: string
   code: string
 }
 const loginBySms = (data: loginBySmsType) => {
-  return post({ url: '/api/auth/doLoginBySms', data })
+  return post('/api/auth/doLoginBySms', data )
 }
 
 export { login, logout, getSmsCode, loginBySms }

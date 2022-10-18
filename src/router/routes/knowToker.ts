@@ -1,4 +1,4 @@
-import Header from '@/components/nav/HeaderNav.vue'
+import Header from '@/components/nav/header.vue'
 
 export default [
   {
@@ -7,7 +7,7 @@ export default [
     redirect: 'knowtoker/enterprise',
     components: {
       header: Header,
-      default: () => import('@/views/know-toker/index.vue'),
+      default: () => import('@/views/home.vue'),
     },
     meta: {
       title: '知因拓客',
@@ -20,7 +20,7 @@ export default [
         meta: {
           title: '工作台',
         },
-        component: () => import('@/views/know-toker/overview/index.vue'),
+        component: () => import('@/views/overview/index.vue'),
       },
       {
         path: 'enterprise',
@@ -29,7 +29,7 @@ export default [
           title: '企业拓客',
         },
         component: () =>
-          import('@/views/know-toker/enterprise-toker/index.vue'),
+          import('@/views/enterprise-toker/index.vue'),
       },
       {
         path: 'enterprise/search',
@@ -212,4 +212,4 @@ export default [
       // },
     ],
   },
-]
+];

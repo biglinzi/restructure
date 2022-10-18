@@ -1,7 +1,11 @@
 import { defineStore } from 'pinia'
-
-export const userStore = defineStore('user', {
-  state: () => ({
+interface userState{
+  userData:any
+  userType:string|number
+  message:string
+}
+export const useUserStore = defineStore('useUserStore', {
+  state: ():userState => ({
     userData: {},
     userType: '',
     message: 'HellowWord',
