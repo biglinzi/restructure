@@ -1,23 +1,20 @@
 interface leftItemData{
-  dayRate:string,
-  weekRate:string,
+  dayRate:number,
+  weekRate:number,
   totals:numString,
   type:'全国'|'管辖客户'
+  [key:string]:any
 }
 interface rightItemData{
   type:"全国"|"管辖客户",
-  weekAddRate:string,
-  dayAddRate:string,
-  todayTotals:numString
+  weekAddRate:number,
+  dayAddRate:number,
+  todayTotals:number
+  [key:string]:any
 }
 interface cardData{
-  dayRate:string,
-  weekRate:string,
-  totals:numString,
-  weekAddRate:string,
-  dayAddRate:string,
-  todayTotals:numString,
-  type?:"全国"|"管辖客户"
+  leftItemData,
+  rightItemData
 }
 interface topCardData{
   leftData:cardData,

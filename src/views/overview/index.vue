@@ -1,5 +1,9 @@
 <template>
-<TopCard />
+  <div>
+    <TopCard />
+
+  </div>
+
 </template>
 
 <script lang="ts" setup>

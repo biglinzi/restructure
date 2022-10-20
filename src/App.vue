@@ -1,5 +1,6 @@
 <template>
-  <router-view></router-view>
+  <router-view name="header"></router-view>
+  <router-view name="default"></router-view>
 </template>
 
 <script setup lang="ts">

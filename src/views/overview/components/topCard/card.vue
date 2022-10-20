@@ -1,6 +1,6 @@
 <template>
-  <CardLeftItem :data="leftData"></CardLeftItem>
-  <CardRightItem :data="rightData"></CardRightItem>
+  <CardLeftItem :data="leftItemData"></CardLeftItem>
+  <CardRightItem :data="rightItemData"></CardRightItem>
 </template>
 
 <script lang="ts" setup>
@@ -9,9 +9,7 @@ import CardRightItem from './cardRightItem.vue'
   const props = defineProps<{
     data:cardData
   }>();
-  const  {dayRate,weekRate,totals,type,dayAddRate,weekAddRate,todayTotals} = props.data
-  const leftData = {dayRate,weekRate,totals,type}
-  const rightData = {dayAddRate,weekAddRate,todayTotals,type}
+  const {leftItemData,rightItemData} = props.data
 </script>
 <style lang="scss" scoped>
 </style>

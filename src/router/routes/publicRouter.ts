@@ -1,6 +1,6 @@
 import { login ,logout } from '@cp/pageComponent'
 import type { RouteRecordRaw } from 'vue-router'
-import {knowlegeneRouter} from "@/router/routes/knowToker";
+import knowlegeneRouter from "@/router/routes/knowToker";
 // import loginName form '@views/login'
 
 /**

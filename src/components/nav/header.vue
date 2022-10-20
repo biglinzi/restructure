@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { useUserStore, usePerissionStore } from '@/stores';
-import { reactive } from 'vue';
+import { reactive,watch } from 'vue';
 import { useRoute } from 'vue-router';
 interface submenuItemType{
     name:string,
@@ -46,7 +46,7 @@ watch(route, (route) => {
   let { menuList = [] } = perissionStore//userData;
   let { name = '' } = userStore.userData
 
-  let submenus:submenuItemType=[];
+  let submenus:keys=[];
   // 企业中心
   if (menuList.some((item) => item.name === "org-admin")) {
     if (/^\/admin/.test(route.path)) {

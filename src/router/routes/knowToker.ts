@@ -4,7 +4,7 @@ export default [
   {
     path: '/knowtoker',
     name: 'knowtoker',
-    redirect: 'knowtoker/enterprise',
+    redirect: 'knowtoker/overview',
     components: {
       header: Header,
       default: () => import('@/views/home.vue'),
