@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
     NoneData: typeof import('./src/components/NoneData.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideBar: typeof import('./src/components/nav/SideBar.vue')['default']
     TipCard: typeof import('./src/components/viewComponent/tipCard.vue')['default']
     TransferStation: typeof import('./src/components/TransferStation.vue')['default']
     Transit: typeof import('./src/components/Transit.vue')['default']

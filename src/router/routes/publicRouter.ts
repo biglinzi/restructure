@@ -1,6 +1,6 @@
 import { login ,logout } from '@cp/pageComponent'
 import type { RouteRecordRaw } from 'vue-router'
-import knowlegeneRouter from "@/router/routes/knowToker";
+import knowToker from "@/router/routes/knowToker";
 // import loginName form '@views/login'
 
 /**
@@ -15,7 +15,7 @@ const routers: RouteRecordRaw[] = [
   //   component:()=>import('@cp/layout/index.vue'),
   //   children:[knowToker],
   // },
-  ...knowlegeneRouter,
+  ...knowToker,
   {
     path: '/login',
     name: 'login',

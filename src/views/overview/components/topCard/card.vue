@@ -1,6 +1,6 @@
 <template>
-  <CardLeftItem :data="leftItemData"></CardLeftItem>
-  <CardRightItem :data="rightItemData"></CardRightItem>
+    <CardLeftItem :data="leftItemData"></CardLeftItem>
+    <CardRightItem :data="rightItemData"></CardRightItem>
 </template>
 
 <script lang="ts" setup>

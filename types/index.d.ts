@@ -6,6 +6,13 @@ declare interface PromiseFn<T = any, R = T> {
   (...arg: T[]): Promise<R>
 }
 
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P];
+};
+type Record<K extends keyof any, T> = {
+  [P in K]: T;
+};
+
 declare type RefType<T> = T | null
 
 declare type LabelValueOptions = {

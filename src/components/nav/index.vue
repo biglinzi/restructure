@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <router-view name="header"></router-view>
-    <router-view></router-view>
+  <div class="exact-marketing-wrapper">
+    <div class="main-content-box">
+      <router-view></router-view>
+    </div>
+
   </div>
 </template>
 
