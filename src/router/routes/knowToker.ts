@@ -1,6 +1,6 @@
 import Header from '@/components/nav/header.vue'
-
-export default [
+import type { RouteRecordRaw } from 'vue-router'
+const knowToker:RouteRecordRaw[] =  [
   {
     path: '/',
     name: 'knowtoker',
@@ -213,3 +213,4 @@ export default [
     ],
   },
 ];
+export default knowToker
