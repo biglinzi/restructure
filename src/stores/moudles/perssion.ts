@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getSession } from '@/api/perssion'
+import { getSession } from '@api/public/perssion'
 import { useUserStore } from './user'
 
 interface perissionState{

@@ -3,13 +3,9 @@ import routes from './routes/publicRouter'
 import { websiteTitle } from '@/config'
 import { usePerissionStore } from '@/stores'
 import type { Router } from 'vue-router'
+import type { Routers } from './router'
 import { Forbidden } from '@cp/pageComponent'
 import { ElMessageBox } from 'element-plus'
-
-interface Routers extends Router {
-  $open: (locationString: string) => void
-  $verification: (v: boolean) => void
-}
 const router: Router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
@@ -18,7 +14,7 @@ const router: Router = createRouter({
  * 使用路由配置打开新页面
  * @param {string} locationString
  */
-;(router as Routers).$open = (locationString) => {
+;(router as unknown as Routers).$open = (locationString) => {
   const ref = router.resolve(locationString)
   window.open(ref.href, '_blank')
 }
@@ -27,7 +23,7 @@ const router: Router = createRouter({
  * 路由校验开关
  * @param {boolean} v
  */
-;(router as Routers).$verification = function (v) {
+;(router as unknown as Routers).$verification = function (v) {
   verificationRequired = Boolean(v)
 }
 // 识别浏览器信息
